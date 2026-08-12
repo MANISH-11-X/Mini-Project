@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Food - Food Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🥗 Food Manager
+        </div>
+
+        <div class="nav-links">
+            <a href="/add">Add Food</a>
+            <a href="/view">View Food</a>
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <div class="form-card">
+
+            <h1>Add Food</h1>
+
+            <form action="/add" method="post">
+
+                <label for="food_name">
+                    Food Item
+                </label>
+
+                <input
+                    type="text"
+                    name="food_name"
+                    id="food_name"
+                    placeholder="Enter food name"
+                    required
+                >
+
+
+                <label for="category">
+                    Category
+                </label>
+
+                <input
+                    type="text"
+                    name="category"
+                    id="category"
+                    placeholder="e.g. Fruit, Vegetable"
+                    required
+                >
+
+
+                <label for="quantity">
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    name="quantity"
+                    id="quantity"
+                    placeholder="Enter quantity"
+                    required
+                >
+
+
+                <label for="expiry">
+                    Expiry Date
+                </label>
+
+                <input
+                    type="date"
+                    name="expiry"
+                    id="expiry"
+                    required
+                >
+
+
+                <button type="submit">
+                    Add Food
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

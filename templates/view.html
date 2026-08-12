@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>View Food - Food Manager</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🥗 Food Manager
+        </div>
+
+        <div class="nav-links">
+            <a href="/add">Add Food</a>
+            <a href="/view">View Food</a>
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1 class="page-title">
+            View Food Items
+        </h1>
+
+
+        <!-- SEARCH -->
+
+        <form action="/search"
+              method="get"
+              class="search-box">
+
+            <input
+                type="text"
+                name="fname"
+                placeholder="Search Food"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+
+        <!-- TABLE -->
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Food Item</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                        <th>Delete Food</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for food in foods %}
+
+                    <tr>
+
+                        <td>
+                            {{ food.food_name }}
+                        </td>
+
+                        <td>
+                            {{ food.category }}
+                        </td>
+
+                        <td>
+                            {{ food.quantity }}
+                        </td>
+
+                        <td>
+                            {{ food.expiry }}
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/delete/{{ food._id }}"
+                                class="delete-btn"
+                            >
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

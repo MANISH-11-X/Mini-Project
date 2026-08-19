@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Food Manager</title>
+
+<style>
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial;
+    background-color: #e8f5e9;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    height: 70px;
+    background-color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 50px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 22px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.logo span {
+    color: #333;
+}
+
+/* Navigation */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: -135px;
+    list-style: none;
+}
+
+/* Navigation links */
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    padding: 8px 5px;
+
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.nav-links a:hover {
+    color: #2e7d32;
+}
+
+/* Active link */
+.nav-links a.active {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+/* Account */
+.account a {
+    text-decoration: none;
+
+    background-color: #2e7d32;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.account a:hover {
+    background-color: #1b5e20;
+}
+
+/* Hero section */
+.main-content {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.main-content h1 {
+    font-size: 40px;
+    color: #2e7d32;
+    margin-bottom: 15px;
+}
+
+.main-content p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+h2{
+    text-align: center;
+    font-size: 28px;
+    margin-top: -20px;
+}
+
+.carousel-container{
+    position: relative;
+    margin-top: 30px;
+    margin-left: 225px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0,0.7);
+    width: 1100px;
+    margin-bottom: 90px;
+    border-radius: 20px;
+}
+.carousel{
+    display: flex;
+    transition: transform 0.8 ease-in-out;
+}
+.carousel-image{
+    min-width: 100%;
+    height: 730px;
+    object-fit: fill;
+    display: none;
+    border-radius: 20px;
+}
+.carousel-image.active{ 
+       display: inline-block;
+}
+.carousel-btn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    background-color:  rgb(33, 2, 146) ;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+}
+.carousel-btn:hover{
+    background-color: rgba(87, 100, 169, 0.2);
+}
+.carousel-btn.prev{
+
+    left: 10px;
+}
+
+.carousel-btn.next{
+
+    right: 10px;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🍱 <span>GroceryFoodManager</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="{{url_for('webhome')}}" class="active">Home</a></li>
+            <li><a href="{{url_for('add_food')}}">Add Food</a></li>
+            <li><a href="{{url_for('view')}}">View Food</a></li>
+            <li><a href="{{url_for('f')}}">Analyze Food</a></li>
+        </ul>
+
+        <div class="account">
+            <a href="{{url_for('accd')}}"> 👤 Account </a>
+
+        </div>
+
+    </nav>
+
+    <section class="main-content">
+        <h1 style="margin-top: -20px;">Grocery Food Manager</h1>
+        <p>Manage your Grocery food and reduce food waste!!</p>
+    </section>
+
+    <section>
+        <h2 style="text-align: center; color: #2e7d32; margin-top: -30px; font-family: Arial;">Save Food. Reduce Waste</h2>
+        <div class="carousel-container">
+         <div class="carousel">
+        <img src="{{url_for('static', filename='images/expiry1.jpg')}}"
+ 
+         class="carousel-image  active" />
+
+         <img src="{{url_for('static', filename='images/expiry2.jpg')}}" 
+         class="carousel-image"/>
+
+         <img src="{{url_for('static', filename='images/expiry3.jpg')}}"
+         class="carousel-image" />
+
+         <img src="{{url_for('static', filename='images/expiry4.jpg')}}" 
+         class="carousel-image" />
+
+          <img src="{{url_for('static', filename='images/expiry5.jpg')}}"
+         class="carousel-image" />
+         </div>
+
+        <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+        
+        <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </section>
+    
+
+</body>
+    <script>
+let currentIndex = 0; 
+
+const images = document.querySelectorAll('.carousel-image'); 
+
+function showSlide(index){
+    images.forEach((img,i) => {
+       img.classList.remove('active');
+       if(i === index){
+        img.classList.add('active');
+       } 
+    });
+}
+
+
+function nextSlide(){
+    currentIndex = (currentIndex + 1) % images.length;
+    showSlide(currentIndex);
+
+}
+function prevSlide(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showSlide(currentIndex);
+}
+
+</script>
+</html>
